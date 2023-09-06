@@ -9,9 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtBearer(options =>
     {
@@ -25,12 +28,19 @@ builder.Services.AddAuthentication(options =>
             ValidAudience = "b",
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_long_key"))
         };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["token"];
+                return Task.CompletedTask;
+            }
+        };
     })
     .AddCookie(options =>
     {
-        options.LoginPath = "/token/login"; 
+        options.LoginPath = "/login";
     });
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
