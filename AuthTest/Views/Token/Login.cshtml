@@ -1,0 +1,13 @@
+﻿@model AuthTest.Models.LoginViewModel
+
+<form method="post" action="/Token/Login">
+    <div class="form-group">
+        <label for="Name">Логин:</label>
+        <input type="text" name="Name" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="Password">Пароль:</label>
+        <input type="Password" name="Password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>
