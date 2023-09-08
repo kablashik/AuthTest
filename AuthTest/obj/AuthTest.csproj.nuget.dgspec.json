@@ -1,32 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kos2a\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj": {}
+    "C:\\Users\\kablash_k\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kos2a\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj": {
+    "C:\\Users\\kablash_k\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kos2a\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj",
+        "projectUniqueName": "C:\\Users\\kablash_k\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj",
         "projectName": "AuthTest",
-        "projectPath": "C:\\Users\\kos2a\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj",
-        "packagesPath": "C:\\Users\\kos2a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kos2a\\RiderProjects\\AuthTest\\AuthTest\\obj\\",
+        "projectPath": "C:\\Users\\kablash_k\\RiderProjects\\AuthTest\\AuthTest\\AuthTest.csproj",
+        "packagesPath": "C:\\Users\\kablash_k\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kablash_k\\RiderProjects\\AuthTest\\AuthTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kos2a\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\kablash_k\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -37,14 +35,26 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNet.Identity.Core": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
             "Microsoft.AspNetCore.Authentication.Cookies": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.21, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.21, )"
             }
@@ -68,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\kablash_k\\.dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

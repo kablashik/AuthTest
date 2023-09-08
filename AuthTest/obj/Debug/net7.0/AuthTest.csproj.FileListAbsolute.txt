@@ -37,3 +37,9 @@ C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.Id
 C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\obj\Debug\net7.0\AuthTest.csproj.CopyComplete
+C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\kablash_k\RiderProjects\AuthTest\AuthTest\bin\Debug\net7.0\System.Security.Permissions.dll

@@ -4,10 +4,12 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using AuthTest.Models;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 
 namespace AuthTest.Controllers;
 
@@ -18,19 +20,11 @@ public class HomeController : Controller
         return View();
     }
 
-    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
-    //[Authorize]
-    //[Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+    [Authorize]
     [Route("privacy")]
     public IActionResult Privacy()
     {
-        //return View();
-       if (User.Identity.IsAuthenticated)
-       {
-           return View();
-       }
-
-       return RedirectToAction("Login");
+        return View();
     }
 
     [HttpGet]
@@ -42,19 +36,31 @@ public class HomeController : Controller
 
     [HttpPost]
     [Route("login")]
-    public IActionResult Login(User model)
+    public async Task<IActionResult> Login(User model)
     {
-        if (AuthenticateUser(model.Name, model.Password))
+        if (ModelState.IsValid)
         {
-            var token = GenerateToken(model.Name);
-            Response.Cookies.Append("token", token);
-            return RedirectToAction("Privacy");
+            if (AuthenticateUser(model.Name, model.Password))
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, model.Name),
+                    // Другие утверждения, если необходимо
+                };
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var principal = new ClaimsPrincipal(identity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                return RedirectToAction("Privacy", "Home");
+            }
+
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
         }
-        else
-        {
-            ModelState.AddModelError("", "Неправильный логин или пароль");
-            return View("Login", model);
-        }
+
+        return View(model);
     }
 
     public bool AuthenticateUser(string username, string password)
@@ -73,25 +79,5 @@ public class HomeController : Controller
         }
 
         return false; // Пользователь не найден или пароль неверный.
-    }
-
-    public string GenerateToken(string username)
-    {
-        var claims = new[]
-        {
-            new Claim(JwtRegisteredClaimNames.Sub, username),
-        };
-
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_long_key"));
-
-        var token = new JwtSecurityToken(
-            issuer: "a",
-            audience: "b",
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(3),
-            signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
-        );
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }
